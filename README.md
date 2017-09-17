@@ -1,37 +1,97 @@
-## Welcome to GitHub Pages
+# Introduction
+<div style="text-align: justify; text-indent: 30px;">
+<p>
+This project originates from automated game evaluation.
+A fisheye camera is used to capture a room where
+people are playing a newly designed social game.
+In the gram, two teams compete with each other and
+the team dancing in higher sync win the game.
+</p>
+</div>
 
-You can use the [editor on GitHub](https://github.com/YuanWangOnward/fisheye_tracking_and_clustering/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+<div style="text-align: justify; text-indent: 30px;">
+<p>
+In the previous work, people are detected and marked with a bounding
+box as in Fig. 1. In the work, we track and clustering people
+into groups. People in each group should have similar behavior
+and group is the minimal study unit in the following game evaluation.
+</p>
+</div>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<center>
+<img width="300" height="300"  src="assets/images/detected_people.png?raw=true" >
+</center>
+<div style="text-align: justify; text-align:center;" >
+<p>Fig. 1 Detected people are marked with a boundary box.</p>
+</div>
 
-### Markdown
+# Tracking
+<div style="text-align: justify; text-indent: 30px;">
+<p>
+The basic idea of tracking is searching for the most similar boundary
+box in the coming frame. However, in fisheye video, as people move,
+the bounding boxes undergo significant deformation and it needs to be
+taken into consideration when comparing box contents. We handle it by
+reconstructing the real scene from the fisheye video based on fisheye
+imaging model and using persisting physical constants as the clues
+to predict the box deformation. Of course, it is really possible
+to reconstruct the real scene from a single fisheye camera. Strong
+assumption about the real scene is used which is enough for the
+tracking task.
+</p>
+</div>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<center>
+<img src="assets/images/tracking_1.gif?raw=true" >
+</center>
+<div style="text-align: justify; text-align:center;" >
+<p>Fig. 2 People tracking showcase 1.</p>
+</div>
 
-```markdown
-Syntax highlighted code block
+<br>
+<center>
+<img src="assets/images/tracking_2.gif?raw=true" >
+</center>
+<div style="text-align: justify; text-align:center;" >
+<p>Fig. 3 People tracking showcase 2.</p>
+</div>
 
-# Header 1
-## Header 2
-### Header 3
+<br>
+<center>
+<img src="assets/images/tracking_3.gif?raw=true" >
+</center>
+<div style="text-align: justify; text-align:center;" >
+<p>Fig. 4 People tracking showcase 3.</p>
+</div>
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+# Clustering
+<div style="text-align: justify; text-indent: 30px;">
+<p>
+After tracking, the trajectory of each people is obtained.
+Meanshift is then used for clustering, using people location and
+motion energy spectrum as features.
+</p>
+</div>
 
-**Bold** and _Italic_ and `Code` text
+<center>
+<img width="270" height="234" src="assets/images/clustering_1_1.gif?raw=true" >
+<img width="270" height="234" src="assets/images/clustering_1_2.jpeg?raw=true" >
+<img width="270" height="234" src="assets/images/clustering_1_3.jpeg?raw=true" >
+</center>
+<div style="text-align: justify; text-align:center;" >
+<p>Fig. 5 People clustering showcase 1.</p>
+</div>
 
-[Link](url) and ![Image](src)
-```
+<br>
+<center>
+<img width="270" height="234" src="assets/images/clustering_2_1.gif?raw=true" >
+<img width="270" height="234" src="assets/images/clustering_2_2.jpeg?raw=true" >
+<img width="270" height="234" src="assets/images/clustering_2_3.jpeg?raw=true" >
+</center>
+<div style="text-align: justify; text-align:center;" >
+<p>Fig. 6 People clustering showcase 2.</p>
+</div>
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+#### <a href="https://yuanwangonward.github.io/">Back to Yuan's homepage</a>
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/YuanWangOnward/fisheye_tracking_and_clustering/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
